@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:i_bot/home.dart';
+import 'package:i_bot/view/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +12,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //theme: ThemeData.dark(),
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home:  HomeScreen(),
+      home: HomeScreen(),
     );
   }
 }
-
