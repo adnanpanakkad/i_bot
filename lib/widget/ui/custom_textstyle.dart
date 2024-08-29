@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:i_bot/widget/colors.dart';
+import 'package:i_bot/widget/constent/colors.dart';
 
 class CustomTextStyle {
   static const TextStyle buttonTextStyle = TextStyle(
