@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:i_bot/view/home.dart';
+import 'package:i_bot/view/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: HomeScreen(),
+      home: SplashScreen(),
     );
   }
 }

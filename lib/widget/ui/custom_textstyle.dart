@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:i_bot/widget/constent/colors.dart';
 
 class CustomTextStyle {
@@ -14,7 +15,7 @@ class CustomTextStyle {
       fontSize: 29,
       fontWeight: FontWeight.w600,
       fontFamily: 'Urbanist',
-      color: Color.fromARGB(255, 53, 53, 53));
+      color: Colors.cyanAccent);
 
   static const TextStyle swipeTextStyle = TextStyle(
       fontSize: 17,

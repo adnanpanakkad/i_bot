@@ -1,3 +1,4 @@
+import 'package:i_bot/api/api_key.dart';
 import 'package:i_bot/widget/ui/appbar.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +17,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _promtController = TextEditingController();
-  static const String apiKey = "AIzaSyAMWFDPfO3fTtXPkL1gS3cXiHE4XqKrNEw";
+  // static const String apIKey = "AIzaSyAMWFDPfO3fTtXPkL1gS3cXiHE4XqKrNEw";
 
-  final model = GenerativeModel(model: 'gemini-pro', apiKey: apiKey);
+  final model = GenerativeModel(model: 'gemini-pro', apiKey: Apikey().apIKey);
   final List<MessageModel> _messages = [];
+  bool _isLoading = false;
 
   Future<void> sendMessage() async {
     final message = _promtController.text;
@@ -28,12 +30,14 @@ class _HomeScreenState extends State<HomeScreen> {
       _messages.add(
         MessageModel(isUser: true, message: message, date: DateTime.now()),
       );
+      _isLoading = true;
     });
 
     final content = [Content.text(message)];
     final response = await model.generateContent(content);
 
     setState(() {
+      _isLoading = false;
       _messages.add(
         MessageModel(
           isUser: false,
@@ -59,8 +63,19 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Expanded(
                 child: ListView.builder(
-                  itemCount: _messages.length,
+                  itemCount: _messages.length + (_isLoading ? 1 : 0),
                   itemBuilder: (context, index) {
+                    if (index == _messages.length) {
+                      return const Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                        ),
+                      );
+                    }
+
                     final message = _messages[index];
                     final formattedDate =
                         DateFormat('hh:mm').format(message.date);
@@ -76,25 +91,25 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 children: [
                   Expanded(
-                    child: CustomTextfield(
-                      controller: _promtController,
-                      hintText: 'Enter a prompt here',
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: CustomTextfield(
+                        controller: _promtController,
+                        hintText: 'Enter a prompt here',
+                      ),
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(8),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade800,
-                        shape: BoxShape.circle,
-                      ),
-                      margin: const EdgeInsets.only(right: 15),
-                      child: IconButton(
-                        onPressed: sendMessage,
-                        icon: const Icon(
-                          Icons.send,
-                          color: Colors.white,
-                        ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade800,
+                      shape: BoxShape.circle,
+                    ),
+                    margin: const EdgeInsets.only(right: 15, left: 10),
+                    child: IconButton(
+                      onPressed: sendMessage,
+                      icon: const Icon(
+                        Icons.send,
+                        color: Colors.white,
                       ),
                     ),
                   ),
