@@ -91,12 +91,9 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 children: [
                   Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: CustomTextfield(
-                        controller: _promtController,
-                        hintText: 'Enter a prompt here',
-                      ),
+                    child: CustomTextfield(
+                      controller: _promtController,
+                      hintText: 'Enter a prompt here',
                     ),
                   ),
                   Container(
