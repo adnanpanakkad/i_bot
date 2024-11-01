@@ -46,15 +46,23 @@ class _SplashScreenState extends State<SplashScreen> {
                       ),
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.symmetric(horizontal: 25),
-                    child: Text(
-                      'Let’s make your day great right now',
-                      textAlign: TextAlign.center,
-                      style: CustomTextStyle.highboldTxtStyle,
+                    child: ShaderMask(
+                      shaderCallback: (bounds) => LinearGradient(
+                        colors: [Colors.pink, Colors.blue],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ).createShader(bounds),
+                      child: Text(
+                        'Let’s make your day great right now',
+                        textAlign: TextAlign.center,
+                        style: CustomTextStyle.highboldTxtStyle
+                            .copyWith(color: Colors.white),
+                      ),
                     ),
                   ),
-                ],
+                ], 
               ),
             ),
             SizedBox(

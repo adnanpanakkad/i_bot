@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:i_bot/widget/ui/custom_textstyle.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -12,9 +13,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.transparent,
-      title: Text(
-        title,
-        style: TextStyle(fontSize: 20),
+      title: ShaderMask(
+        shaderCallback: (bounds) => LinearGradient(
+          colors: [Colors.pink, Colors.blue],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ).createShader(bounds),
+        child: Text(
+          title,
+          style: CustomTextStyle.ultraBoldTextstyle,
+        ),
       ),
       centerTitle: true,
     );
@@ -23,3 +31,4 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
+ 

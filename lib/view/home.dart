@@ -1,5 +1,6 @@
 import 'package:i_bot/api/api_key.dart';
 import 'package:i_bot/widget/ui/appbar.dart';
+import 'package:i_bot/widget/ui/custom_textstyle.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:i_bot/model/message.dart';
@@ -54,13 +55,17 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         backgroundColor: Appcolors.bgcolor,
         appBar: const CustomAppBar(
-          title: 'Chat with i bot',
+          title: 'Hello',
         ),
         body: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              Text(
+                'How i can help you today',
+                style: CustomTextStyle.textFieldstyle,
+              ),
               Expanded(
                 child: ListView.builder(
                   itemCount: _messages.length + (_isLoading ? 1 : 0),
@@ -88,29 +93,33 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: CustomTextfield(
-                      controller: _promtController,
-                      hintText: 'Enter a prompt here',
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade800,
-                      shape: BoxShape.circle,
-                    ),
-                    margin: const EdgeInsets.only(right: 15, left: 10),
-                    child: IconButton(
-                      onPressed: sendMessage,
-                      icon: const Icon(
-                        Icons.send,
-                        color: Colors.white,
+              Padding(
+                padding: const EdgeInsets.only(top: 10, bottom: 10, left: 10),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: CustomTextfield(
+                        controller: _promtController,
+                        hintText: 'Enter a prompt here',
                       ),
                     ),
-                  ),
-                ],
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade800,
+                        shape: BoxShape.circle,
+                      ),
+                      margin: const EdgeInsets.only(right: 10, left: 10),
+                      child: IconButton(
+                        onPressed: sendMessage,
+                        icon: const Icon(
+                          size: 20,
+                          Icons.send,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

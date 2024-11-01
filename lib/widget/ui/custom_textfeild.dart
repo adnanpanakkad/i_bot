@@ -46,7 +46,7 @@ class CustomTextfield extends StatelessWidget {
           ),
           borderRadius: BorderRadius.all(Radius.circular(18)),
         ),
-        contentPadding: const EdgeInsets.all(20),
+        contentPadding: const EdgeInsets.all(15),
         hintText: hintText,
         hintStyle: CustomTextStyle.textFieldstyle,
         fillColor: Colors.grey.shade800,
